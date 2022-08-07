@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const e = require('express');
-const { notes } = require('../../db.json');
+const { notes } = require('../../db/db.json');
 const { findById, validateNote, createNote } = require('../../lib/notes');
 
 router.get('/api/notes', (req, res) => {
@@ -18,7 +17,7 @@ router.get('/api/notes:id', (req, res) => {
 });
 
 router.post('/api/notes', (req, res) => {
-    req.body.id = notes.length.toString();
+    // req.body.id = notes.length.toString();
 
     if (!validateNote(req.body)) {
         res.status(400).send('Yikes! An error occurred. Sorry!');
