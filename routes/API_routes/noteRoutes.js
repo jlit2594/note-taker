@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const { notes } = require('../../db/db.json');
+const notes  = require('../../db/db.json');
 const { findById, validateNote, createNote } = require('../../lib/notes');
 
-router.get('/api/notes', (req, res) => {
+router.get('/notes', (req, res) => {
     let results = notes;
     res.json(results)
 });
 
-router.get('/api/notes:id', (req, res) => {
+router.get('/notes:id', (req, res) => {
     const result = findById(req.params.id, notes);
     if (result) {
         res.json(result);
@@ -16,7 +16,7 @@ router.get('/api/notes:id', (req, res) => {
     }
 });
 
-router.post('/api/notes', (req, res) => {
+router.post('/notes', (req, res) => {
     // req.body.id = notes.length.toString();
 
     if (!validateNote(req.body)) {
